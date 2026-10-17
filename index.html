@@ -159,10 +159,18 @@
             
             <h2 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white">Тест завершено!</h2>
             
-            <div class="max-w-xs mx-auto bg-slate-50 dark:bg-slate-900 p-4 rounded-xl border border-slate-100 dark:border-slate-800">
-                <span class="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-500 tracking-wider">Ваш результат</span>
-                <p id="final-score" class="text-3xl sm:text-4xl font-black text-indigo-600 dark:text-indigo-400 mt-1">0 / 0</p>
-                <p id="percentage-score" class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">0% успішності</p>
+            <div class="max-w-xs mx-auto bg-slate-50 dark:bg-slate-900 p-4 rounded-xl border border-slate-100 dark:border-slate-800 space-y-3">
+                <div>
+                    <span class="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-500 tracking-wider">Ваш результат</span>
+                    <p id="final-score" class="text-3xl sm:text-4xl font-black text-indigo-600 dark:text-indigo-400 mt-1">0 / 0</p>
+                    <p id="percentage-score" class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">0% успішності</p>
+                </div>
+
+                <!-- Level Assessment Display -->
+                <div id="determined-level-box" class="hidden pt-3 border-t border-slate-200 dark:border-slate-800">
+                    <span class="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-500 tracking-wider">Ваш визначений рівень</span>
+                    <p id="determined-level-tag" class="text-xl font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">A1</p>
+                </div>
             </div>
 
             <p id="result-feedback" class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto leading-relaxed">
@@ -444,13 +452,45 @@
             document.getElementById('final-score').innerText = `${score} / ${total}`;
             document.getElementById('percentage-score').innerText = `${percentage}% успішності`;
 
+            const levelBox = document.getElementById('determined-level-box');
+            const levelTag = document.getElementById('determined-level-tag');
+
             let feedback = "Продовжуйте практикуватись для покращення результатів!";
-            if (percentage >= 90) {
-                feedback = "Відмінний результат! Ви чудово володієте цією темами!";
-            } else if (percentage >= 70) {
-                feedback = "Хороший результат! Ви маєте гарну базу знань.";
-            } else if (percentage >= 50) {
-                feedback = "Задовільний результат. Варто повторити окремі теми та граматику.";
+
+            if (currentQuizType === 'MIXED') {
+                levelBox.classList.remove('hidden');
+                
+                let detectedLevel = "";
+                let levelDesc = "";
+
+                if (percentage >= 85) {
+                    detectedLevel = "Рівень B2 (Fortgeschritten)";
+                    levelDesc = "Ви демонструєте відмінне володіння складними граматичними конструкціями та високий рівень знань!";
+                } else if (percentage >= 65) {
+                    detectedLevel = "Рівень B1 (Mittelstufe)";
+                    levelDesc = "У вас хороший середній рівень! Ви впевнено орієнтуєтеся в основній та розширеній граматиці.";
+                } else if (percentage >= 45) {
+                    detectedLevel = "Рівень A2 (Grundlegend)";
+                    levelDesc = "Ви маєте базову основу німецької мови. Продовжуйте вивчати складніші теми!";
+                } else {
+                    detectedLevel = "Рівень A1 (Anfänger)";
+                    levelDesc = "Ви на початковому етапі. Рекомендуємо повторити базові правила та словниковий запас.";
+                }
+
+                levelTag.innerText = detectedLevel;
+                feedback = levelDesc;
+            } else {
+                levelBox.classList.add('hidden');
+
+                if (percentage >= 90) {
+                    feedback = `Відмінний результат! Ви чудово засвоїли рівень ${currentQuizType}!`;
+                } else if (percentage >= 70) {
+                    feedback = `Хороший результат! Ви маєте гарні знання за рівнем ${currentQuizType}.`;
+                } else if (percentage >= 50) {
+                    feedback = `Задовільний результат. Варто ще трохи повторити тему ${currentQuizType}.`;
+                } else {
+                    feedback = `Варто детальніше опрацювати матеріал рівня ${currentQuizType}.`;
+                }
             }
 
             document.getElementById('result-feedback').innerText = feedback;

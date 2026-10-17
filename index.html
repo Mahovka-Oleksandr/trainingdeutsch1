@@ -50,15 +50,15 @@
     <main class="max-w-4xl mx-auto px-3 sm:px-4 py-4 sm:py-6 w-full flex-grow flex flex-col justify-center">
         
         <!-- Menu View -->
-       
-            <div class="bg-white dark:bg-slate-800 p-5 sm:p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 text-center transition-colors">
+        <div id="menu-view" class="space-y-4 sm:space-y-6 w-full">
+            <div class="p-2 sm:p-4 text-center">
                 <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-1.5">Оберіть рівень для тестування</h2>
                 <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
                     Кожен тематичний тест містить <b>20 запитань</b>. Загальний комплексний тест містить <b>30 запитань</b>.
                 </p>
-           
+            </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
                 <!-- A1 Button -->
                 <button onclick="startQuiz('A1')" class="bg-white dark:bg-slate-800 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:border-indigo-500 dark:hover:border-indigo-400 active:bg-indigo-50/50 dark:active:bg-slate-700/50 transition-all text-left group">
                     <div class="flex justify-between items-center mb-1.5">
@@ -101,7 +101,7 @@
             </div>
 
             <!-- General Test Button -->
-            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-600 dark:to-purple-800 p-5 sm:p-6 rounded-2xl shadow-lg text-white">
+            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-600 dark:to-purple-800 p-5 sm:p-6 rounded-2xl shadow-lg text-white mt-4 sm:mt-6">
                 <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
                     <div>
                         <span class="text-[10px] font-bold px-2.5 py-1 rounded-md bg-white/20 text-white border border-white/30 tracking-wide uppercase">Комплексний тест</span>

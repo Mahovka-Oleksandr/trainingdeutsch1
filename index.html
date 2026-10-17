@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тестування з німецької мови (A1-B2)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <header class="bg-indigo-600 text-white shadow-md">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
+            <h1 class="text-xl font-bold flex items-center gap-2">
+                <span>🇩🇪</span> Deutsch Test Center
+            </h1>
+            <span class="text-xs sm:text-sm bg-indigo-700 px-3 py-1 rounded-full text-indigo-100 font-medium">
+                Рівні A1 - B2
+            </span>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-6 w-full flex-grow">
+        
+        <!-- Menu View -->
+        <div id="menu-view" class="space-y-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-center">
+                <h2 class="text-2xl font-bold text-slate-900 mb-2">Оберіть рівень для тестування</h2>
+                <p class="text-slate-600 text-sm max-w-xl mx-auto">
+                    Кожен тематичний тест за рівнем містить <b>20 запитань</b>. Загальний комплексний тест містить <b>30 запитань</b> для оцінки ваших знань.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- A1 Button -->
+                <button onclick="startQuiz('A1')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-500 hover:shadow-md transition text-left group">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-800">Рівень A1</span>
+                        <span class="text-xs text-slate-400">20 запитань</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 group-hover:text-indigo-600 transition">Початковий (Anfänger)</h3>
+                    <p class="text-xs text-slate-500 mt-1">Базова граматика, лексика, привітання, прості речення.</p>
+                </button>
+
+                <!-- A2 Button -->
+                <button onclick="startQuiz('A2')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-500 hover:shadow-md transition text-left group">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-blue-100 text-blue-800">Рівень A2</span>
+                        <span class="text-xs text-slate-400">20 запитань</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 group-hover:text-indigo-600 transition">Елементарний (Grundlegende Kenntnisse)</h3>
+                    <p class="text-xs text-slate-500 mt-1">Минулий час (Perfekt), сполучники, щоденне спілкування.</p>
+                </button>
+
+                <!-- B1 Button -->
+                <button onclick="startQuiz('B1')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-500 hover:shadow-md transition text-left group">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-amber-100 text-amber-800">Рівень B1</span>
+                        <span class="text-xs text-slate-400">20 запитань</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 group-hover:text-indigo-600 transition">Середній (Fortgeschrittene Sprachverwendung)</h3>
+                    <p class="text-xs text-slate-500 mt-1">Підрядні речення, пасивний стан, розширена лексика.</p>
+                </button>
+
+                <!-- B2 Button -->
+                <button onclick="startQuiz('B2')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-500 hover:shadow-md transition text-left group">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-purple-100 text-purple-800">Рівень B2</span>
+                        <span class="text-xs text-slate-400">20 запитань</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 group-hover:text-indigo-600 transition">Вищий середній (Selbstständige Sprachverwendung)</h3>
+                    <p class="text-xs text-slate-500 mt-1">Konjunktiv II, складні конструкції, ідіоми, ділові контексти.</p>
+                </button>
+            </div>
+
+            <!-- General Test Button -->
+            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 rounded-2xl shadow-lg text-white">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                    <div>
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-white/20 text-white border border-white/30">Комплексний тест</span>
+                        <h3 class="text-xl font-bold mt-2">Загальний тест (A1 — B2)</h3>
+                        <p class="text-xs text-indigo-100 mt-1">Включає питання всіх рівнів для комплексної оцінки знань.</p>
+                    </div>
+                    <button onclick="startQuiz('MIXED')" class="bg-white text-indigo-700 px-6 py-3 rounded-xl font-bold hover:bg-indigo-50 transition shadow whitespace-nowrap">
+                        Пройти тест (30 питань)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz View -->
+        <div id="quiz-view" class="hidden space-y-6">
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                <div class="flex justify-between items-center text-xs font-semibold text-slate-500 mb-2">
+                    <span id="quiz-title-badge">Тест A1</span>
+                    <span id="question-counter">Запитання 1 з 20</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 5%;"></div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+                <h3 id="question-text" class="text-lg sm:text-xl font-semibold text-slate-800 mb-6">
+                    Питання завантажується...
+                </h3>
+
+                <div id="options-container" class="space-y-3">
+                    <!-- Dynamic Options -->
+                </div>
+
+                <div id="explanation-box" class="hidden mt-6 p-4 rounded-xl text-sm border"></div>
+
+                <div class="mt-6 flex justify-between items-center">
+                    <button onclick="showMenu()" class="text-xs font-medium text-slate-400 hover:text-slate-600 transition">
+                        ← Повернутися до меню
+                    </button>
+                    <button id="next-btn" onclick="nextQuestion()" disabled class="bg-indigo-600 text-white px-6 py-2.5 rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-indigo-700 transition">
+                        Наступне запитання
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result View -->
+        <div id="result-view" class="hidden bg-white p-8 rounded-2xl shadow-sm border border-slate-200 text-center space-y-6">
+            <div class="inline-flex p-4 rounded-full bg-indigo-50 text-indigo-600 mb-2">
+                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            
+            <h2 class="text-2xl font-bold text-slate-800">Тест завершено!</h2>
+            
+            <div class="max-w-xs mx-auto bg-slate-50 p-4 rounded-xl border border-slate-100">
+                <span class="text-xs uppercase font-bold text-slate-400">Ваш результат</span>
+                <p id="final-score" class="text-4xl font-black text-indigo-600 mt-1">0 / 0</p>
+                <p id="percentage-score" class="text-xs font-medium text-slate-500 mt-1">0% успішності</p>
+            </div>
+
+            <p id="result-feedback" class="text-sm text-slate-600 max-w-md mx-auto">
+                Чудовий результат! Продовжуйте тренуватися.
+            </p>
+
+            <button onclick="showMenu()" class="bg-indigo-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-indigo-700 transition">
+                Повернутися до вибору тестів
+            </button>
+        </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-4 mt-8">
+        <div class="max-w-4xl mx-auto px-4 text-center text-xs text-slate-400">
+            Інтерактивні тести для вивчення німецької мови • A1, A2, B1, B2
+        </div>
+    </footer>
+
+    <script>
+        const questionBank = {
+            A1: [
+                { q: "Hallo, wie ___ du?", options: ["heißt", "heiße", "heißen", "heiß"], correct: 0, exp: "Для займенника 'du' закінчення дієслова -st: du heißt." },
+                { q: "Ich ___ aus der Ukraine.", options: ["kommst", "komme", "kommt", "kommen"], correct: 1, exp: "Для займенника 'ich' закінчення дієслова -e: ich komme." },
+                { q: "Das ist ___ Buch.", options: ["ein", "eine", "einen", "einer"], correct: 0, exp: "Слово 'Buch' середнього роду (das Buch) -> ein Buch." },
+                { q: "Wo ___ du?", options: ["wohnen", "wohnst", "wohne", "wohnt"], correct: 1, exp: "Правильна форма дієслова для 'du' -> wohnst." },
+                { q: "Er ___ kein Fleisch.", options: ["isst", "esse", "essen", "esst"], correct: 0, exp: "Неправильне дієслово essen: er/sie/es isst." },
+                { q: "Wie alt ___ du?", options: ["bist", "ist", "sind", "bin"], correct: 0, exp: "Дієслово sein для 'du' має форму 'bist'." },
+                { q: "Das ist ___ Frau.", options: ["kein", "keine", "keinen", "keiner"], correct: 1, exp: "Жіночий рід (die Frau) у запереченні має форму 'keine'." },
+                { q: "___ trinken Sie gerne?", options: ["Was", "Wer", "Wo", "Wie"], correct: 0, exp: "Запитання стосується предмета/напою: Was? (Що?)." },
+                { q: "Wir ___ heute nach Berlin.", options: ["fahren", "fährst", "fährt", "fahre"], correct: 0, exp: "Для займенника 'wir' вживається початкова форма (Infinitiv): fahren." },
+                { q: "Mein Vater ___ Arzt.", options: ["ist", "bist", "sind", "sein"], correct: 0, exp: "Він (er) -> ist." },
+                { q: "Hast du ___ Hund?", options: ["einen", "ein", "eine", "einer"], correct: 0, exp: "Hund має чоловічий рід (der Hund). Знахідний відмінок (Akkusativ) -> einen." },
+                { q: "Die Kinder ___ im Garten.", options: ["spielen", "spielt", "spiele", "spielst"], correct: 0, exp: "Множина (die Kinder = sie) -> spielen." },
+                { q: "Am Sonntag schlafe ich ___.", options: ["lange", "langem", "langer", "langst"], correct: 0, exp: "Прислівник 'lange' (довго)." },
+                { q: "___ ist das? - Das ist Katrin.", options: ["Wer", "Was", "Wo", "Warum"], correct: 0, exp: "Запитання про особу: Wer? (Хто?)." },
+                { q: "Um wie viel Uhr ___ die Schule an?", options: ["fängt", "fangt", "fangen", "fange"], correct: 0, exp: "Відокремлювана префіксна форма anfangen: die Schule fängt ... an." },
+                { q: "Ich habe ___ Zeit.", options: ["keine", "kein", "keinen", "keiner"], correct: 0, exp: "Zeit - жіночий рід (die Zeit) -> keine Zeit." },
+                { q: "Sprichst du ___?", options: ["Deutsch", "Deutschen", "Deutscher", "Deutsche"], correct: 0, exp: "Мови вживаються без артикля: Deutsch." },
+                { q: "Das Auto ist ___ alt.", options: ["sehr", "viel", "mehr", "gut"], correct: 0, exp: "Для підсилення прикметника вживаємо 'sehr' (дуже)." },
+                { q: "Ich möchte bitte einen ___ bestellen.", options: ["Kaffee", "Milch", "Wasser", "Suppe"], correct: 0, exp: "'Einen' вказує на чоловічий рід (der Kaffee)." },
+                { q: "Danke schön! - ___!", options: ["Bitte schön", "Guten Tag", "Tschüss", "Hallo"], correct: 0, exp: "Стандартна відповідь на подяку: Bitte schön!" }
+            ],
+            A2: [
+                { q: "Gestern ___ ich ins Kino gegangen.", options: ["bin", "habe", "war", "hatte"], correct: 0, exp: "Дієслова руху (gehen) у Perfekt утворюються з допоміжним дієсловом 'sein'." },
+                { q: "Ich habe den Brief schon ___.", options: ["geschrieben", "schreiben", "schrieb", "geschreibt"], correct: 0, exp: "Partizip II від schreiben -> geschrieben." },
+                { q: "Wenn es regnet, ___ ich zu Hause.", options: ["bleibe", "bleibe ich", "ich bleibe", "bleiben"], correct: 0, exp: "У підрядному реченні після коми головне починається з дієслова." },
+                { q: "Ich helfe ___ Mutter.", options: ["meiner", "meine", "meinen", "mein"], correct: 0, exp: "Дієслово 'helfen' вимагає Dativ: die Mutter -> meiner Mutter." },
+                { q: "Wir freuen uns ___ den Urlaub.", options: ["auf", "über", "für", "an"], correct: 0, exp: "Sich freuen auf (Akkusativ) - радіти чекаючи на щось у майбутньому." },
+                { q: "Kannst du mir bitte ___ Stift geben?", options: ["den", "dem", "der", "das"], correct: 0, exp: "Geben + Akkusativ для предмета: der Stift -> den Stift." },
+                { q: "Er lernt Deutsch, ___ er in Deutschland arbeiten möchte.", options: ["weil", "dass", "wenn", "deshalb"], correct: 0, exp: "Сполучник 'weil' виражає причину та ставить дієслово в кінець." },
+                { q: "Sie wohnt ___ zwei Jahren in Berlin.", options: ["seit", "vor", "für", "in"], correct: 0, exp: "Дія триває досі -> 'seit' + Dativ." },
+                { q: "Ich ziehe mich schnell ___.", options: ["an", "aus", "auf", "mit"], correct: 0, exp: "Sich anziehen - одягатися." },
+                { q: "Das ist das Haus, ___ ich wohne.", options: ["in dem", "wohin", "was", "das"], correct: 0, exp: "Відносне речення з прийменником місця: in dem (im)." },
+                { q: "Morgen ___ wir nach München fahren.", options: ["werden", "wollen", "haben", "sind"], correct: 0, exp: "Futur I утворюється за допомогою werden + Infinitiv." },
+                { q: "Ich trinke lieber Tee ___ Kaffee.", options: ["als", "wie", "für", "denn"], correct: 0, exp: "При порівнянні вищого ступеня (lieber) вживаємо 'als'." },
+                { q: "Ich danke ___ für die Hilfe.", options: ["dir", "dich", "du", "dein"], correct: 0, exp: "Danken вимагає Dativ: dir." },
+                { q: "Wo ist meine Brille? Ich kann ___ nicht finden.", options: ["sie", "ihn", "es", "ihnen"], correct: 0, exp: "Die Brille -> sie (Akkusativ)." },
+                { q: "Er ist ohne ___ Mantel rausgegangen.", options: ["seinen", "seinem", "sein", "seiner"], correct: 0, exp: "Прийменник 'ohne' завжди вимагає Akkusativ: seinen." },
+                { q: "Wir haben uns lange nicht ___.", options: ["gesehen", "sehen", "sah", "geseht"], correct: 0, exp: "Perfekt від sehen -> gesehen." },
+                { q: "Darf ich hier ___?", options: ["parken", "geparkt", "parkt", "parkte"], correct: 0, exp: "Модальне дієслово вимагає інфінітива в кінці." },
+                { q: "Das Wetter ist heute ___ als gestern.", options: ["besser", "gut", "am besten", "guter"], correct: 0, exp: "Вищий ступінь від gut -> besser." },
+                { q: "Ich rufe dich an, ___ ich angekommen bin.", options: ["wenn", "als", "weil", "dass"], correct: 0, exp: "Повторювана або майбутня дія у часі -> wenn." },
+                { q: "Gefällt ___ dieser Film?", options: ["dir", "dich", "du", "deine"], correct: 0, exp: "Gefallen вимагає Dativ -> dir." }
+            ],
+            B1: [
+                { q: "Obwohl das Wetter schlecht war, ___ wir einen Spaziergang.", options: ["machten", "haben gemacht", "machen", "macht"], correct: 0, exp: "Підрядне допусту (Obwohl). У головному реченні порядок слів змінюється." },
+                { q: "Das Buch wird von vielen Studenten ___.", options: ["gelesen", "lesen", "las", "gelesen werden"], correct: 0, exp: "Passiv Präsens: werden + Partizip II (gelesen)." },
+                { q: "Wenn ich mehr Zeit hätte, ___ ich mehr lesen.", options: ["würde", "werde", "hatte", "wäre"], correct: 0, exp: "Konjunktiv II для вираження умовності -> würde + Infinitiv." },
+                { q: "Er tut so, als ob er alles ___.", options: ["wüsste", "weiß", "gewusst", "wissen"], correct: 0, exp: "Конструкція als ob вимагає Konjunktiv II (wüsste)." },
+                { q: "Je mehr man lernt, ___ besser versteht man.", options: ["desto", "um", "wie", "als"], correct: 0, exp: "Парний сполучник: je ... desto / umso." },
+                { q: "An deiner Stelle ___ ich sofort zum Arzt gehen.", options: ["würde", "sollte", "werde", "hatte"], correct: 0, exp: "Порада у Konjunktiv II: an deiner Stelle würde ich..." },
+                { q: "Er erinnerte sich nicht mehr ___ den Namen.", options: ["an", "auf", "über", "für"], correct: 0, exp: "Sich erinnern an + Akkusativ." },
+                { q: "Wir haben beschlossen, im Sommer nach Italien ___.", options: ["zu reisen", "reisen", "gereist", "zu reiste"], correct: 0, exp: "Інфінітивна конструкція з 'zu'." },
+                { q: "Der Mann, ___ Auto gestohlen wurde, rief die Polizei.", options: ["dessen", "dem", "den", "der"], correct: 0, exp: "Відносний займенник у Genitiv (чоловічий/середній рід) -> dessen." },
+                { q: "Wegen des ___ Regens blieb er zu Hause.", options: ["starken", "starker", "starkem", "starkes"], correct: 0, exp: "Прийменник 'wegen' + Genitiv з артиклем des -> starken." },
+                { q: "Die Tür muss vor dem Verlassen ___ werden.", options: ["abgeschlossen", "abschließen", "abgeschlossen sein", "abschließt"], correct: 0, exp: "Passiv з модальним дієсловом: muss + Partizip II + werden." },
+                { q: "Er bestand darauf, die Rechnung allein zu ___.", options: ["bezahlen", "bezahlt", "bezahlte", "bezahlten"], correct: 0, exp: "Інфінітив з zu: zu bezahlen." },
+                { q: "Ich habe mich an das kalte Wetter ___.", options: ["gewöhnt", "gewöhnen", "gewöhnte", "gewohnt"], correct: 0, exp: "Sich gewöhnen an + Akkusativ -> gewöhnt." },
+                { q: "___ des schlechten Wetters fiel das Konzert aus.", options: ["Aufgrund", "Trotz", "Wegen", "Anstatt"], correct: 0, exp: "Aufgrund (на підставі/через) або Wegen з Genitiv." },
+                { q: "Er antwortete, ohne lange ___.", options: ["nachzudenken", "nachdenken", "nachgedacht", "zu nachdenken"], correct: 0, exp: "Конструкція 'ohne ... zu' + Infinitiv." },
+                { q: "Er fragte mich, ob ich ihm helfen ___.", options: ["könnte", "kann", "konnte", "können"], correct: 0, exp: "Непряма мова / прохання в Konjunktiv II: könnte." },
+                { q: "Die Aufgabe war zu schwer, um sie schnell ___.", options: ["zu lösen", "lösen", "gelöst", "zu gelöst"], correct: 0, exp: "Конструкція 'um ... zu' + Infinitiv." },
+                { q: "Seitdem er in Berlin lebt, ___ er viel Deutsch.", options: ["spricht", "sprach", "gesprochen", "sprechen"], correct: 0, exp: "Підрядне часу (Seitdem) вимагає теперішній час при тривалій дії." },
+                { q: "Ich freue mich darüber, dass du ___ bist.", options: ["gekommen", "kommen", "kamst", "gekommen wirst"], correct: 0, exp: "Perfekt у підрядному реченні: gekommen bist." },
+                { q: "Er arbeitet, ___ sein Studium zu finanzieren.", options: ["um", "damit", "für", "weil"], correct: 0, exp: "Конструкція мети з однаковим підметом: um ... zu." }
+            ],
+            B2: [
+                { q: "Hätte ich das gewusst, ___ ich anders gehandelt.", options: ["hätte", "wäre", "würde", "hatte"], correct: 0, exp: "Умовне речення без сполучника wenn: Hätte ich..., hätte ich..." },
+                { q: "Es wird darum gebeten, das Mobiltelefon ___.", options: ["auszuschalten", "ausschalten", "ausgeschaltet", "auszuschalten werden"], correct: 0, exp: "Інфінітивна конструкція з zu для відокремлюваних префіксів: aus-zu-schalten." },
+                { q: "Statt den Zug zu nehmen, ___ er mit dem Auto gefahren.", options: ["ist", "hat", "wird", "wäre"], correct: 0, exp: "Дієслово fahren вимагає 'sein' у Perfekt." },
+                { q: "Die Maßnahme dient dazu, die Sicherheit zu ___.", options: ["gewährleisten", "gewährleistet", "gewährleisteten", "gewährleistete"], correct: 0, exp: "Dienen dazu, etwas zu + Infinitiv." },
+                { q: "Es handelt sich ___ ein missverständliches Signal.", options: ["um", "von", "über", "für"], correct: 0, exp: "Sich handeln um + Akkusativ." },
+                { q: "Je komplexer die Frage ist, ___ schwieriger ist die Antwort.", options: ["desto", "umso", "wie", "als"], correct: 0, exp: "Конструкція Je ... desto (або umso)." },
+                { q: "Nichts deutet darauf hin, dass die Preise ___ werden.", options: ["gesenkt", "senken", "gesenkt haben", "gesenkt sein"], correct: 0, exp: "Passiv Futur I у підрядному реченні: gesenkt werden." },
+                { q: "Er tut so, als ___ er von nichts gewusst.", options: ["hätte", "hat", "habe", "würde"], correct: 0, exp: "Конструкція als + Konjunktiv II: als hätte er..." },
+                { q: "Unter diesen Umständen ___ eine Entscheidung getroffen werden.", options: ["muss", "müsste", "musste", "müssten"], correct: 0, exp: "Модальне дієслово 'müssen' у теперішньому часі." },
+                { q: "Die Verhandlungen verliefen ___ Erwartung erfolgreich.", options: ["wider", "gegen", "trotz", "wegen"], correct: 0, exp: "Вираз 'wider Erwartung' (вперекор очікуванням) + Akkusativ." },
+                { q: "Angesichts der Situation ___ wir schnell handeln.", options: ["müssen", "sollen", "dürfen", "mögten"], correct: 0, exp: "Прийменник 'angesichts' (з огляду на) + Genitiv." },
+                { q: "Es sei denn, dass noch unvorhergesehene Probleme ___.", options: ["auftreten", "auftraten", "aufgetreten sind", "auftreten werden"], correct: 0, exp: "Конструкція 'es sei denn, dass...' (якщо тільки не...)." },
+                { q: "Der Minister trat wegen des Skandals ___.", options: ["zurück", "ab", "aus", "ein"], correct: 0, exp: "Zurücktreten - подавати у відставку." },
+                { q: "Ohne deine Unterstützung ___ wir das Projekt nicht geschafft.", options: ["hätten", "würden", "waren", "haben"], correct: 0, exp: "Konjunktiv II минулого часу: hätten geschafft." },
+                { q: "Er gab vor, den Bericht bereits ___ zu haben.", options: ["gelesen", "lesen", "las", "gelesen werden"], correct: 0, exp: "Інфінітив перфекту: gelesen zu haben." },
+                { q: "Die Anzahl der Teilnehmer ist kontinuierlich ___.", options: ["gestiegen", "gesteigert", "steigen", "gelegen"], correct: 0, exp: "Steigen (зростати) -> ist gestiegen." },
+                { q: "Er vernachlässigte seine Pflichten, ___ zur Kündigung führte.", options: ["was", "das", "die", "womit"], correct: 0, exp: "Відносне займенник 'was' для відсилання до всього змісту попереднього речення." },
+                { q: "Wir müssen alle Faktoren in Betracht ___.", options: ["ziehen", "nehmen", "stellen", "bringen"], correct: 0, exp: "Сійко сполучення: etwas in Betracht ziehen (брати до уваги)." },
+                { q: "Das Projekt konnte dank ___ Einsatzes aller Beteiligten abgeschlossen werden.", options: ["des unermüdlichen", "dem unermüdlichen", "der unermüdliche", "des unermüdlichem"], correct: 0, exp: "Прийменник 'dank' у літературній мові вживається з Genitiv." },
+                { q: "Es steht außer Frage, dass wir eine Lösung ___ müssen.", options: ["finden", "gefunden", "fanden", "zu finden"], correct: 0, exp: "Модальне дієслово вимагає чистий інфінітив в кінці." }
+            ]
+        };
+
+        let currentQuizType = '';
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let selectedOption = null;
+
+        function startQuiz(type) {
+            currentQuizType = type;
+            currentIndex = 0;
+            score = 0;
+
+            if (type === 'MIXED') {
+                // Generate 30 questions randomly picked across levels
+                const all = [
+                    ...questionBank.A1.map(q => ({...q, level: 'A1'})),
+                    ...questionBank.A2.map(q => ({...q, level: 'A2'})),
+                    ...questionBank.B1.map(q => ({...q, level: 'B1'})),
+                    ...questionBank.B2.map(q => ({...q, level: 'B2'}))
+                ];
+                
+                // Shuffle and pick 30
+                currentQuestions = all.sort(() => 0.5 - Math.random()).slice(0, 30);
+            } else {
+                currentQuestions = [...questionBank[type]];
+            }
+
+            document.getElementById('menu-view').classList.add('hidden');
+            document.getElementById('result-view').classList.add('hidden');
+            document.getElementById('quiz-view').classList.remove('hidden');
+
+            renderQuestion();
+        }
+
+        function showMenu() {
+            document.getElementById('quiz-view').classList.add('hidden');
+            document.getElementById('result-view').classList.add('hidden');
+            document.getElementById('menu-view').classList.remove('hidden');
+        }
+
+        function renderQuestion() {
+            selectedOption = null;
+            const q = currentQuestions[currentIndex];
+            const total = currentQuestions.length;
+
+            // Update Badge & Counter
+            let badgeText = currentQuizType === 'MIXED' ? `Загальний тест (${q.level || 'A1-B2'})` : `Тест ${currentQuizType}`;
+            document.getElementById('quiz-title-badge').innerText = badgeText;
+            document.getElementById('question-counter').innerText = `Запитання ${currentIndex + 1} з ${total}`;
+
+            // Update Progress Bar
+            const progressPercent = ((currentIndex + 1) / total) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+
+            // Question Text
+            document.getElementById('question-text').innerText = q.q;
+
+            // Options
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+
+            // Hide explanation
+            const expBox = document.getElementById('explanation-box');
+            expBox.classList.add('hidden');
+            expBox.className = "hidden mt-6 p-4 rounded-xl text-sm border";
+
+            // Disable next button until selected
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.disabled = true;
+            nextBtn.innerText = (currentIndex === total - 1) ? "Завершити тест" : "Наступне запитання";
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 hover:border-indigo-400 hover:bg-slate-50 transition flex items-center justify-between group";
+                btn.onclick = () => selectOption(idx);
+                btn.innerHTML = `
+                    <span class="font-medium text-slate-700 group-hover:text-slate-900">${opt}</span>
+                    <span id="opt-icon-${idx}" class="w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center text-xs"></span>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        function selectOption(idx) {
+            if (selectedOption !== null) return; // Prevent changing answer
+
+            selectedOption = idx;
+            const q = currentQuestions[currentIndex];
+            const container = document.getElementById('options-container');
+            const buttons = container.querySelectorAll('button');
+
+            buttons.forEach((btn, i) => {
+                btn.disabled = true;
+                btn.classList.remove('hover:border-indigo-400', 'hover:bg-slate-50');
+
+                if (i === q.correct) {
+                    btn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-900');
+                    btn.querySelector('[id^="opt-icon"]').innerHTML = '✓';
+                    btn.querySelector('[id^="opt-icon"]').classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
+                } else if (i === idx) {
+                    btn.classList.add('bg-rose-50', 'border-rose-500', 'text-rose-900');
+                    btn.querySelector('[id^="opt-icon"]').innerHTML = '✕';
+                    btn.querySelector('[id^="opt-icon"]').classList.add('bg-rose-500', 'text-white', 'border-rose-500');
+                }
+            });
+
+            if (idx === q.correct) {
+                score++;
+            }
+
+            // Show Explanation
+            const expBox = document.getElementById('explanation-box');
+            expBox.classList.remove('hidden');
+            if (idx === q.correct) {
+                expBox.classList.add('bg-emerald-50', 'border-emerald-200', 'text-emerald-800');
+                expBox.innerHTML = `<b>Правильно!</b> ${q.exp}`;
+            } else {
+                expBox.classList.add('bg-rose-50', 'border-rose-200', 'text-rose-800');
+                expBox.innerHTML = `<b>Неправильно.</b> ${q.exp}`;
+            }
+
+            document.getElementById('next-btn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (currentIndex < currentQuestions.length - 1) {
+                currentIndex++;
+                renderQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            document.getElementById('quiz-view').classList.add('hidden');
+            document.getElementById('result-view').classList.remove('hidden');
+
+            const total = currentQuestions.length;
+            const percentage = Math.round((score / total) * 100);
+
+            document.getElementById('final-score').innerText = `${score} / ${total}`;
+            document.getElementById('percentage-score').innerText = `${percentage}% успішності`;
+
+            let feedback = "Продовжуйте практикуватись для покращення результатів!";
+            if (percentage >= 90) {
+                feedback = "Відмінний результат! Ви чудово володієте цією темами!";
+            } else if (percentage >= 70) {
+                feedback = "Хороший результат! Ви маєте гарну базу знань.";
+            } else if (percentage >= 50) {
+                feedback = "Задовільний результат. Варто повторити окремі теми та граматику.";
+            }
+
+            document.getElementById('result-feedback').innerText = feedback;
+        }
+    </script>
+</body>
+</html>

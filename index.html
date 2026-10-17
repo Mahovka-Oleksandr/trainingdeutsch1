@@ -167,9 +167,9 @@
                 </div>
 
                 <!-- Level Assessment Display -->
-                <div id="determined-level-box" class="hidden pt-3 border-t border-slate-200 dark:border-slate-800">
+                <div id="determined-level-box" class="pt-3 border-t border-slate-200 dark:border-slate-800">
                     <span class="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-500 tracking-wider">Ваш визначений рівень</span>
-                    <p id="determined-level-tag" class="text-xl font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">A1</p>
+                    <p id="determined-level-tag" class="text-lg sm:text-xl font-bold text-emerald-600 dark:text-emerald-400 mt-1">A1</p>
                 </div>
             </div>
 
@@ -321,6 +321,7 @@
             currentIndex = 0;
             score = 0;
 
+            let rawQuestions = [];
             if (type === 'MIXED') {
                 // Generate 30 questions randomly picked across levels
                 const all = [
@@ -331,10 +332,23 @@
                 ];
                 
                 // Shuffle and pick 30
-                currentQuestions = all.sort(() => 0.5 - Math.random()).slice(0, 30);
+                rawQuestions = all.sort(() => 0.5 - Math.random()).slice(0, 30);
             } else {
-                currentQuestions = [...questionBank[type]];
+                rawQuestions = JSON.parse(JSON.stringify(questionBank[type]));
             }
+
+            // Shuffle options and recalculate correct option index for each question
+            currentQuestions = rawQuestions.map(question => {
+                const correctAnswerText = question.options[question.correct];
+                const shuffledOptions = [...question.options].sort(() => 0.5 - Math.random());
+                const newCorrectIndex = shuffledOptions.indexOf(correctAnswerText);
+                
+                return {
+                    ...question,
+                    options: shuffledOptions,
+                    correct: newCorrectIndex
+                };
+            });
 
             document.getElementById('menu-view').classList.add('hidden');
             document.getElementById('result-view').classList.add('hidden');
@@ -458,7 +472,7 @@
             let feedback = "Продовжуйте практикуватись для покращення результатів!";
 
             if (currentQuizType === 'MIXED') {
-                levelBox.classList.remove('hidden');
+                levelBox.style.display = 'block';
                 
                 let detectedLevel = "";
                 let levelDesc = "";
@@ -480,7 +494,7 @@
                 levelTag.innerText = detectedLevel;
                 feedback = levelDesc;
             } else {
-                levelBox.classList.add('hidden');
+                levelBox.style.display = 'none';
 
                 if (percentage >= 90) {
                     feedback = `Відмінний результат! Ви чудово засвоїли рівень ${currentQuizType}!`;
